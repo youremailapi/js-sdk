@@ -1,0 +1,10 @@
+{
+  "name": "youremailapi",
+  "version": "0.0.9",
+  "description": "Interact with YouremailAPI API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ]
+}
