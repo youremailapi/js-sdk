@@ -8,6 +8,8 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: 
+      name: Production
 
     steps:
       - name: Checkout repository
@@ -26,6 +28,5 @@ jobs:
 
       - name: Publish to npm
         run: npm publish
-        environment: Production
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
