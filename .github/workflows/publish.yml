@@ -26,5 +26,6 @@ jobs:
 
       - name: Publish to npm
         run: npm publish
+        environment: Production
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
