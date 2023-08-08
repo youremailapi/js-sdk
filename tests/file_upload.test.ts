@@ -40,6 +40,7 @@ describe("upload files to api", () => {
     } catch (error) {
       expect(mockedAxios.post).toBeCalledTimes(0);
       expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe(`File ${mockFile} does not exists`)
     }
   });
 });
