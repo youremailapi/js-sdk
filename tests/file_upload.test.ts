@@ -33,7 +33,7 @@ describe("upload files to api", () => {
     mockedAxios.post.mockRestore();
   });
 
-  it("should throw error exception", async () => {
+  it("should throw error exception becouse file does not exists", async () => {
     const mockFile: string = path.resolve("Eventi.aar.png");
     try {
       await uploadFiles("SOME_API_KEY", mockFile);
