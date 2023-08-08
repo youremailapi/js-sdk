@@ -1,5 +1,6 @@
 import axios from "axios";
-import { readFileSync, existsSync } from "fs";
+import { existsSync, createReadStream } from "fs";
+import * as FormData from "form-data";
 
 export async function uploadFiles(
   apikey: string,
@@ -11,15 +12,13 @@ export async function uploadFiles(
     if (!existsSync(filesPaths)) {
       throw new Error(`File ${filesPaths} does not exists`);
     }
-
-    const file = new Blob([readFileSync(filesPaths)]);
-    formData.append("files", file);
+    formData.append("files", createReadStream(filesPaths));
   } else {
     filesPaths.forEach((filePath) => {
       if (!existsSync(filePath)) {
         throw new Error(`File ${filePath} does not exists`);
       }
-      formData.append("files", new Blob([readFileSync(filePath)]));
+      formData.append("files", createReadStream(filePath));
     });
   }
 
@@ -27,7 +26,7 @@ export async function uploadFiles(
     .post("https://api.youremailapi.com/files", formData, {
       headers: {
         apikey,
-        "Content-Type": "application/form-data",
+        "Content-Type": "multipart/form-data",
       },
     })
     .then((data) => {

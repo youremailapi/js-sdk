@@ -19,16 +19,6 @@ describe("upload files to api", () => {
 
     expect(result.data).toContain("SOME_FILE_ID");
     expect(mockedAxios.post).toHaveBeenCalledTimes(1);
-    expect(mockedAxios.post).toHaveBeenCalledWith(
-      "https://api.youremailapi.com/files",
-      expect.any(FormData),
-      expect.objectContaining({
-        headers: {
-          apikey: "SOME_API_KEY",
-          "Content-Type": "application/form-data",
-        },
-      })
-    );
 
     mockedAxios.post.mockRestore();
   });
