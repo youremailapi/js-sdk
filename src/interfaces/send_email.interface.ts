@@ -4,4 +4,5 @@ export default interface SendEmailInterface {
   to: string;
   subject: string;
   variables?: object;
+  attachments?: Array<string>;
 }

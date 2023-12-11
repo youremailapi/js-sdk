@@ -3,24 +3,33 @@ import axios from "axios";
 
 export async function sendEmail(
   apikey: string,
-  { to, subject, smtp_account, template, variables }: SendEmailInterface
+  {
+    to,
+    subject,
+    smtp_account,
+    template,
+    variables,
+    attachments,
+  }: SendEmailInterface
 ) {
+  const body = {
+    to,
+    subject,
+    smtp_account,
+    template,
+    variables,
+  };
+
+  if (null !== attachments) {
+    body["attachments"] = attachments;
+  }
+
   return axios
-    .post(
-      "https://api.youremailapi.com/mailer",
-      {
-        to,
-        subject,
-        smtp_account,
-        template,
-        variables,
+    .post("https://api.youremailapi.com/mailer", body, {
+      headers: {
+        apikey,
       },
-      {
-        headers: {
-          apikey,
-        },
-      }
-    )
+    })
     .then((data) => {
       return { data: data.data };
     })
