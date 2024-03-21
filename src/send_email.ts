@@ -10,6 +10,7 @@ export async function sendEmail(
     template,
     variables,
     attachments,
+    bcc,
   }: SendEmailInterface
 ) {
   const body = {
@@ -22,6 +23,9 @@ export async function sendEmail(
 
   if (null !== attachments) {
     body["attachments"] = attachments;
+  }
+  if (null !== bcc) {
+    body["bcc"] = bcc;
   }
 
   return axios
