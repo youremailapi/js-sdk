@@ -5,4 +5,5 @@ export default interface SendEmailInterface {
   subject: string;
   variables?: object;
   attachments?: Array<string>;
+  bcc?: Array<string>
 }
